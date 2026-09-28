@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Birthday Surprise 💗</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+:root{
+  --pink:#f47792; --pink2:#ffb5c5; --soft:#fff4f7; --dark:#542b38;
+  --white:#fff; --shadow:0 20px 60px rgba(120,55,75,.15);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"DM Sans",sans-serif;background:#000;color:var(--dark)}
+.video{width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.phone{width:min(100%,430px);min-height:100vh;background:#fff4f7;overflow:hidden;position:relative}
+.screen{display:none;min-height:100vh;position:relative;padding:22px}
+.screen.active{display:block}
+.top-title{text-align:center;color:white;background:#000;padding:28px 10px 24px;font-size:18px;font-weight:700;letter-spacing:.2px}
+.top-title small{display:block;font-size:20px;margin-top:8px}
+
+.bg-hearts{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.heart{position:absolute;font-size:25px;opacity:.5;animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-22px) rotate(8deg)}}
+
+h1,h2,h3,p{margin-top:0}
+.serif{font-family:"Playfair Display",serif}
+.muted{opacity:.7;font-size:12px}
+.center{text-align:center}
+.btn{
+ border:0;background:linear-gradient(135deg,#ff8da5,#ec5f7c);color:#fff;
+ padding:13px 22px;border-radius:999px;font-weight:700;cursor:pointer;
+ box-shadow:0 10px 25px rgba(236,95,124,.25);transition:.25s
+}
+.btn:hover{transform:translateY(-2px)}
+.card{background:rgba(255,255,255,.9);border:1px solid #f9d9e1;border-radius:22px;box-shadow:var(--shadow)}
+
+#passcode{padding:0;background:#fff4f7}
+.pass-wrap{padding:80px 28px;text-align:center}
+.lock{font-size:40px;margin-bottom:8px}
+.pass-input{display:flex;justify-content:center;gap:8px;margin:25px 0}
+.dot{width:40px;height:44px;border:1px solid #f3cbd5;border-radius:10px;background:white;text-align:center;font-size:22px}
+.keypad{max-width:270px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.key{height:46px;border:0;border-radius:50%;background:#fff;color:#74424f;font-weight:700;box-shadow:0 5px 16px #eacbd3;cursor:pointer}
+.hint{margin-top:18px;color:#a36373;font-size:11px}
+
+.hero{min-height:100vh;background:linear-gradient(150deg,#fff8fa,#ffeaf0);padding:30px 18px}
+.nav{display:flex;justify-content:space-between;font-size:11px;color:#ad7180}
+.hero-content{text-align:center;padding-top:80px}
+.hero h1{font-family:"Playfair Display",serif;font-size:54px;line-height:.9;color:#d86d86;margin:12px 0}
+.hero h1 em{display:block;color:#ed9aaa;font-size:37px}
+.rose{font-size:50px;animation:bob 2s infinite ease-in-out}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.confetti{position:absolute;inset:0;pointer-events:none}
+.confetti i{position:absolute;width:7px;height:20px;background:#f79aad;opacity:.55;animation:fall 4s linear infinite}
+@keyframes fall{from{transform:translateY(-50px) rotate(0)}to{transform:translateY(105vh) rotate(360deg)}}
+
+.story{padding:25px 18px 45px;background:#fff7f9}
+.story-head{display:flex;justify-content:space-between;font-size:10px;color:#b16c7b}
+.story-main{margin-top:35px}
+.story-main h2{font-size:35px;line-height:1.02}
+.story-main h2 span{color:#e56d87}
+.story-photo{height:220px;border-radius:18px;background:linear-gradient(135deg,#4d2630,#d9879a);display:flex;align-items:center;justify-content:center;color:white;font-size:50px;overflow:hidden}
+.story-photo img{width:100%;height:100%;object-fit:cover}
+.story-text{font-size:13px;line-height:1.7;color:#79505b;margin-top:18px}
+.mini-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0}
+.mini-gallery img{width:100%;aspect-ratio:1;border-radius:7px;object-fit:cover;background:#f2c7d1}
+
+.memories{padding:24px 16px 50px;background:#fff6f8}
+.memories h2{text-align:center;font-family:"Playfair Display",serif;font-size:28px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:20px}
+.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:7px;background:#eac3cc}
+.quote{text-align:center;margin:22px 0;font-family:"Playfair Display",serif;font-style:italic;color:#a45e70}
+
+.modal-bg{position:absolute;inset:0;background:rgba(44,18,25,.58);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:25px;z-index:20}
+.modal-bg.show{display:flex}
+.modal{background:#fff9fa;border-radius:22px;padding:28px 22px;text-align:center;box-shadow:0 30px 90px #301620}
+.modal .cake{font-size:55px}
+.modal h2{font-family:"Playfair Display",serif;font-size:28px}
+.modal p{font-size:13px;line-height:1.7;color:#78505b}
+
+.final{padding:30px 18px;background:linear-gradient(145deg,#fff0f4,#ffe0e9);text-align:center;min-height:100vh}
+.final h2{font-family:"Playfair Display",serif;font-size:34px;color:#d65d78}
+.final-box{margin-top:30px;padding:25px;border-radius:22px;background:#fff;box-shadow:var(--shadow)}
+.big-heart{font-size:60px;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+
+.footer-note{text-align:center;color:#9e6976;font-size:10px;margin-top:25px}
+</style>
+</head>
+<body>
+<div class="video"><main class="phone">
+
+<!-- ================= EDIT HERE ================= -->
+<script>
+const CONFIG = {
+  name: "SHIVANI",                         // Birthday person's name
+  sender: "Your classmet",                      // Your name
+  passcode: "1234",                         // Change birthday/passcode
+  birthdayText: "Happy wala  Birthday",
+  subtitle: " Beautiful and Speed se bate karne bali ladki",
+  storyTitle: "Forever & Always",
+  storyText:
+   "jab tumpe mujhe sabse jyada gussa aya tha ... "
+  "ye sab lekhne ke leye sorry tumhe yaad nhi hoga par mujhe yaad hai jab me ess school,me aya tha to mera work complet nhi tha esleye parmjit sir
+    ne tumhari nootbook kaam karne ke leye delai thi uss time to tumne mujhe copy de di par jese hi sir gaye tumne copy ese magi mujhse jese abb 
+    me copy kabhi nhi duga . sorry .. ❤️",
+  
+</script>
+<!-- ================================================= -->
+
+<section id="passcode" class="screen active">
+  <div class="top-title">POV: it's Her Birthday<small>💖✨</small></div>
+  <div class="pass-wrap">
+    <div class="lock">🔐</div>
+    <h3>Enter Passcode</h3>
+    <p class="muted">A little surprise is waiting for you...</p>
+    <div class="pass-input">
+      <input class="dot" id="p1" maxlength="1" readonly>
+      <input class="dot" id="p2" maxlength="1" readonly>
+      <input class="dot" id="p3" maxlength="1" readonly>
+      <input class="dot" id="p4" maxlength="1" readonly>
+    </div>
+    <div class="keypad" id="keypad"></div>
+    <div class="hint">Hint: your special date 💗</div>
+  </div>
+</section>
+
+<section id="welcome" class="screen">
+  <div class="bg-hearts" id="hearts"></div>
+  <div class="hero">
+    <div class="nav"><span>✦ A SPECIAL SURPRISE</span><span>FOR YOU ♡</span></div>
+    <div class="hero-content">
+      <div class="rose">🎁</div>
+      <p class="muted">A little gift made with love</p>
+      <h1><span id="heroTitle">Happy Birthday</span><em id="heroSub">My Beautiful Love</em></h1>
+      <p id="heroName">For Her ❤️</p>
+      <button class="btn" onclick="show('story')">OPEN YOUR SURPRISE →</button>
+    </div>
+  </div>
+</section>
+
+<section id="story" class="screen">
+  <div class="story">
+    <div class="story-head"><span>♥ MADE WITH LOVE</span><span>CHAPTER 01</span></div>
+    <div class="story-main">
+      <h2 id="storyHeading">Forever &<br><span>Always</span></h2>
+      <div class="story-photo"><img id="mainPhoto" alt="memory"></div>
+      <p class="story-text" id="storyText"></p>
+      <div class="mini-gallery" id="miniGallery"></div>
+      <div class="center"><button class="btn" onclick="openMessage()">READ MY HEART →</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="memories" class="screen">
+  <div class="memories">
+    <p class="center muted">✦ CHAPTER 02 ✦</p>
+    <h2>Every Moment, Every Smile, Every Chapter — Forever Yours</h2>
+    <p class="center muted">Beautiful memories, frozen in time.</p>
+    <div class="gallery" id="gallery"></div>
+    <div class="quote">“Some memories become home.”</div>
+    <div class="center"><button class="btn" onclick="openMessage()">ONE LAST SURPRISE 💗</button></div>
+    <div class="footer-note">Made specially for <span id="footerName"></span> · by <span id="footerSender"></span></div>
+  </div>
+</section>
+
+<section id="final" class="screen">
+  <div class="final">
+    <div class="big-heart">🎂</div>
+    <h2>Close Your Eyes &<br>Make a Wish ✨</h2>
+    <div class="final-box">
+      <p class="muted">Before you go...</p>
+      <p id="finalText"></p>
+      <button class="btn" onclick="restart()">↻ WATCH AGAIN</button>
+    </div>
+  </div>
+</section>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="cake">🎂💗</div>
+    <h2>Dear <span id="modalName"></span>...</h2>
+    <p id="secret"></p>
+    <button class="btn" onclick="closeMessage()">Continue →</button>
+  </div>
+</div>
+
+</main></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const screens=["passcode","welcome","story","memories","final"];
+
+function show(id){
+  screens.forEach(x=>$("#"+x).classList.remove("active"));
+  $("#"+id).classList.add("active");
+  window.scrollTo(0,0);
+}
+function openMessage(){
+  $("#modal").classList.add("show");
+}
+function closeMessage(){
+  $("#modal").classList.remove("show");
+  show("memories");
+}
+function restart(){ show("passcode"); resetCode(); }
+
+function fillData(){
+  $("#heroTitle").textContent=CONFIG.birthdayText;
+  $("#heroSub").textContent=CONFIG.subtitle;
+  $("#heroName").textContent="For "+CONFIG.name+" ❤️";
+  $("#storyHeading").innerHTML=CONFIG.storyTitle.replace("&","&<br><span>");
+  $("#storyText").textContent=CONFIG.storyText;
+  $("#modalName").textContent=CONFIG.name;
+  $("#secret").textContent=CONFIG.secretMessage;
+  $("#finalText").textContent=CONFIG.secretMessage;
+  $("#footerName").textContent=CONFIG.name;
+  $("#footerSender").textContent=CONFIG.sender;
+  $("#mainPhoto").src=CONFIG.photos[0];
+
+  const mini=$("#miniGallery"), gal=$("#gallery");
+  CONFIG.photos.slice(0,4).forEach((src,i)=>{
+    const im=new Image(); im.src=src; mini.appendChild(im);
+  });
+  CONFIG.photos.forEach(src=>{
+    const im=new Image(); im.src=src; gal.appendChild(im);
+  });
+}
+fillData();
+
+let code="";
+const inputs=[$("#p1"),$("#p2"),$("#p3"),$("#p4")];
+function resetCode(){
+  code=""; inputs.forEach(x=>x.value="");
+}
+function press(n){
+  if(code.length>=4)return;
+  code+=n; inputs[code.length-1].value="•";
+  if(code.length===4){
+    setTimeout(()=>{
+      if(code===CONFIG.passcode){
+        show("welcome"); resetCode();
+      }else{
+        inputs.forEach(x=>x.style.borderColor="#ef6d88");
+        setTimeout(()=>{inputs.forEach(x=>x.style.borderColor="");resetCode()},500);
+      }
+    },200);
+  }
+}
+const keypad=$("#keypad");
+[1,2,3,4,5,6,7,8,9,"⌫",0,"↵"].forEach(n=>{
+  const b=document.createElement("button");
+  b.className="key"; b.textContent=n;
+  b.onclick=()=>{
+    if(n==="⌫"){code=code.slice(0,-1);inputs.forEach((x,i)=>x.value=i<code.length?"•":"");}
+    else if(n!=="↵")press(n);
+  };
+  keypad.appendChild(b);
+});
+
+// Floating hearts
+for(let i=0;i<16;i++){
+  const h=document.createElement("span");
+  h.className="heart";h.textContent=["♡","♥","✦","✨"][i%4];
+  h.style.left=Math.random()*95+"%";
+  h.style.top=Math.random()*95+"%";
+  h.style.animationDelay=(Math.random()*3)+"s";
+  $("#hearts").appendChild(h);
+}
+// Confetti
+for(let i=0;i<25;i++){
+  const c=document.createElement("i");
+  c.style.left=Math.random()*100+"%";
+  c.style.top=(-Math.random()*100)+"px";
+  c.style.animationDelay=(Math.random()*4)+"s";
+  c.style.transform="rotate("+Math.random()*180+"deg)";
+  $(".hero").appendChild(c);
+}
+</script>
+</body>
+</html>
