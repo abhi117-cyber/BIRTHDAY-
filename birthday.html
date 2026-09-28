@@ -61,16 +61,22 @@ h1,h2,h3,p{margin-top:0}
 .story-main{margin-top:35px}
 .story-main h2{font-size:35px;line-height:1.02}
 .story-main h2 span{color:#e56d87}
-.story-photo{height:220px;border-radius:18px;background:linear-gradient(135deg,#4d2630,#d9879a);display:flex;align-items:center;justify-content:center;color:white;font-size:50px;overflow:hidden}
-.story-photo img{width:100%;height:100%;object-fit:cover}
+.memory-hero{height:220px;border-radius:24px;margin-top:8px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 42%,#fff 0,#ffe3eb 28%,#f5a0b4 70%,#d85d7b 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 45px rgba(180,75,105,.22)}
+.memory-orb{width:112px;height:112px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:54px;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.65);box-shadow:0 0 45px rgba(255,255,255,.75);animation:orbPulse 2.4s ease-in-out infinite}
+@keyframes orbPulse{50%{transform:scale(1.08);box-shadow:0 0 70px rgba(255,255,255,.9)}}
+.sparkle{position:absolute;color:white;font-size:25px;animation:sparkle 2s infinite ease-in-out}.s1{top:35px;left:25%}.s2{right:23%;bottom:45px;animation-delay:.8s}
+@keyframes sparkle{50%{opacity:.25;transform:scale(.65) rotate(25deg)}}
+.memory-lines{position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,.08) 23px 24px);transform:scale(1.4)}
+.memory-caption{position:absolute;bottom:18px;color:white;font-size:11px;letter-spacing:2px;text-transform:uppercase}
 .story-text{font-size:13px;line-height:1.7;color:#79505b;margin-top:18px}
-.mini-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0}
-.mini-gallery img{width:100%;aspect-ratio:1;border-radius:7px;object-fit:cover;background:#f2c7d1}
+.memory-cards{display:grid;gap:9px;margin:16px 0}.memory-card{display:flex;gap:12px;align-items:center;padding:12px;border-radius:15px;background:#fff;border:1px solid #f6d8df;box-shadow:0 7px 20px rgba(120,55,75,.08)}
+.memory-icon{font-size:25px;width:42px;height:42px;border-radius:12px;background:#fff0f4;display:flex;align-items:center;justify-content:center}.memory-card strong{font-size:12px}.memory-card p{font-size:10px;line-height:1.45;color:#8a5c68;margin:3px 0}
 
 .memories{padding:24px 16px 50px;background:#fff6f8}
 .memories h2{text-align:center;font-family:"Playfair Display",serif;font-size:28px}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:20px}
-.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:7px;background:#eac3cc}
+.memory-timeline{position:relative;margin:22px 5px 0}.memory-timeline:before{content:"";position:absolute;left:20px;top:10px;bottom:10px;width:2px;background:#f1b8c5}
+.timeline-item{display:flex;gap:13px;position:relative;margin-bottom:15px}.timeline-dot{flex:0 0 42px;height:42px;border-radius:50%;background:#fff;border:2px solid #f0a9b9;display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 4px 12px rgba(180,75,105,.12)}
+.timeline-content{flex:1;background:#fff;border-radius:15px;padding:12px;border:1px solid #f5d9df}.timeline-content span{font-size:8px;letter-spacing:1.5px;color:#d4778e}.timeline-content h3{font-family:"Playfair Display",serif;margin:3px 0;font-size:17px}.timeline-content p{font-size:10px;line-height:1.5;color:#805866;margin:0}
 .quote{text-align:center;margin:22px 0;font-family:"Playfair Display",serif;font-style:italic;color:#a45e70}
 
 .modal-bg{position:absolute;inset:0;background:rgba(44,18,25,.58);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:25px;z-index:20}
@@ -95,168 +101,23 @@ h1,h2,h3,p{margin-top:0}
 <!-- ================= EDIT HERE ================= -->
 <script>
 const CONFIG = {
-  name: "SHIVANI",                         // Birthday person's name
-  sender: "Your classmet",                      // Your name
-  passcode: "1234",                         // Change birthday/passcode
-  birthdayText: "Happy wala  Birthday",
-  subtitle: " Beautiful and Speed se bate karne bali ladki",
+  name: "SHIVANI",
+  sender: "Your classmet",
+  passcode: "1234",
+  birthdayText: "Happy wala Birthday",
+  subtitle: "Beautiful girl and Speed se bate karne bali ladki",
   storyTitle: "Forever & Always",
   storyText:
-   "jab tumpe mujhe sabse jyada gussa aya tha ... "
-  "ye sab lekhne ke leye sorry tumhe yaad nhi hoga par mujhe yaad hai jab me ess school,me aya tha to mera work complet nhi tha esleye parmjit sir
-    ne tumhari nootbook kaam karne ke leye delai thi uss time to tumne mujhe copy de di par jese hi sir gaye tumne copy ese magi mujhse jese abb 
-    me copy kabhi nhi duga . sorry .. ❤️",
-  
-</script>
-<!-- ================================================= -->
-
-<section id="passcode" class="screen active">
-  <div class="top-title">POV: it's Her Birthday<small>💖✨</small></div>
-  <div class="pass-wrap">
-    <div class="lock">🔐</div>
-    <h3>Enter Passcode</h3>
-    <p class="muted">A little surprise is waiting for you...</p>
-    <div class="pass-input">
-      <input class="dot" id="p1" maxlength="1" readonly>
-      <input class="dot" id="p2" maxlength="1" readonly>
-      <input class="dot" id="p3" maxlength="1" readonly>
-      <input class="dot" id="p4" maxlength="1" readonly>
-    </div>
-    <div class="keypad" id="keypad"></div>
-    <div class="hint">Hint: your special date 💗</div>
-  </div>
-</section>
-
-<section id="welcome" class="screen">
-  <div class="bg-hearts" id="hearts"></div>
-  <div class="hero">
-    <div class="nav"><span>✦ A SPECIAL SURPRISE</span><span>FOR YOU ♡</span></div>
-    <div class="hero-content">
-      <div class="rose">🎁</div>
-      <p class="muted">A little gift made with love</p>
-      <h1><span id="heroTitle">Happy Birthday</span><em id="heroSub">My Beautiful Love</em></h1>
-      <p id="heroName">For Her ❤️</p>
-      <button class="btn" onclick="show('story')">OPEN YOUR SURPRISE →</button>
-    </div>
-  </div>
-</section>
-
-<section id="story" class="screen">
-  <div class="story">
-    <div class="story-head"><span>♥ MADE WITH LOVE</span><span>CHAPTER 01</span></div>
-    <div class="story-main">
-      <h2 id="storyHeading">Forever &<br><span>Always</span></h2>
-      <div class="story-photo"><img id="mainPhoto" alt="memory"></div>
-      <p class="story-text" id="storyText"></p>
-      <div class="mini-gallery" id="miniGallery"></div>
-      <div class="center"><button class="btn" onclick="openMessage()">READ MY HEART →</button></div>
-    </div>
-  </div>
-</section>
-
-<section id="memories" class="screen">
-  <div class="memories">
-    <p class="center muted">✦ CHAPTER 02 ✦</p>
-    <h2>Every Moment, Every Smile, Every Chapter — Forever Yours</h2>
-    <p class="center muted">Beautiful memories, frozen in time.</p>
-    <div class="gallery" id="gallery"></div>
-    <div class="quote">“Some memories become home.”</div>
-    <div class="center"><button class="btn" onclick="openMessage()">ONE LAST SURPRISE 💗</button></div>
-    <div class="footer-note">Made specially for <span id="footerName"></span> · by <span id="footerSender"></span></div>
-  </div>
-</section>
-
-<section id="final" class="screen">
-  <div class="final">
-    <div class="big-heart">🎂</div>
-    <h2>Close Your Eyes &<br>Make a Wish ✨</h2>
-    <div class="final-box">
-      <p class="muted">Before you go...</p>
-      <p id="finalText"></p>
-      <button class="btn" onclick="restart()">↻ WATCH AGAIN</button>
-    </div>
-  </div>
-</section>
-
-<div class="modal-bg" id="modal">
-  <div class="modal">
-    <div class="cake">🎂💗</div>
-    <h2>Dear <span id="modalName"></span>...</h2>
-    <p id="secret"></p>
-    <button class="btn" onclick="closeMessage()">Continue →</button>
-  </div>
-</div>
-
-</main></div>
-
-<script>
-const $=s=>document.querySelector(s);
-const screens=["passcode","welcome","story","memories","final"];
-
-function show(id){
-  screens.forEach(x=>$("#"+x).classList.remove("active"));
-  $("#"+id).classList.add("active");
-  window.scrollTo(0,0);
-}
-function openMessage(){
-  $("#modal").classList.add("show");
-}
-function closeMessage(){
-  $("#modal").classList.remove("show");
-  show("memories");
-}
-function restart(){ show("passcode"); resetCode(); }
-
-function fillData(){
-  $("#heroTitle").textContent=CONFIG.birthdayText;
-  $("#heroSub").textContent=CONFIG.subtitle;
-  $("#heroName").textContent="For "+CONFIG.name+" ❤️";
-  $("#storyHeading").innerHTML=CONFIG.storyTitle.replace("&","&<br><span>");
-  $("#storyText").textContent=CONFIG.storyText;
-  $("#modalName").textContent=CONFIG.name;
-  $("#secret").textContent=CONFIG.secretMessage;
-  $("#finalText").textContent=CONFIG.secretMessage;
-  $("#footerName").textContent=CONFIG.name;
-  $("#footerSender").textContent=CONFIG.sender;
-  $("#mainPhoto").src=CONFIG.photos[0];
-
-  const mini=$("#miniGallery"), gal=$("#gallery");
-  CONFIG.photos.slice(0,4).forEach((src,i)=>{
-    const im=new Image(); im.src=src; mini.appendChild(im);
-  });
-  CONFIG.photos.forEach(src=>{
-    const im=new Image(); im.src=src; gal.appendChild(im);
-  });
-}
-fillData();
-
-let code="";
-const inputs=[$("#p1"),$("#p2"),$("#p3"),$("#p4")];
-function resetCode(){
-  code=""; inputs.forEach(x=>x.value="");
-}
-function press(n){
-  if(code.length>=4)return;
-  code+=n; inputs[code.length-1].value="•";
-  if(code.length===4){
-    setTimeout(()=>{
-      if(code===CONFIG.passcode){
-        show("welcome"); resetCode();
-      }else{
-        inputs.forEach(x=>x.style.borderColor="#ef6d88");
-        setTimeout(()=>{inputs.forEach(x=>x.style.borderColor="");resetCode()},500);
-      }
-    },200);
-  }
-}
-const keypad=$("#keypad");
-[1,2,3,4,5,6,7,8,9,"⌫",0,"↵"].forEach(n=>{
-  const b=document.createElement("button");
-  b.className="key"; b.textContent=n;
-  b.onclick=()=>{
-    if(n==="⌫"){code=code.slice(0,-1);inputs.forEach((x,i)=>x.value=i<code.length?"•":"");}
-    else if(n!=="↵")press(n);
-  };
+    "jab tumpe mujhe sabse jyada gussa aya tha... ye sab lekhne ke leye sorry. tumhe yaad nhi hoga par mujhe yaad hai jab me ess school me aya tha to mera work complete nhi tha,
+     esliye Parmjit Sir ne tumhari notebook kaam karne ke leye di thi. Uss time to tumne mujhe copy de di, par jese hi sir gaye tumne copy ese mangi mujhse jaise ab me copy kabhi nhi dunga.
+     tb mujhe tumpe mujhe sabse jyada gussa aya tha. Sorry... ❤️",
+  secretMessage:
+    "Shayad tumhe ye sab chhoti-chhoti baatein yaad na ho, esleye mujhe achank se yaad aa gai lekin mere liye ye moments bahut special tha. 
+      Tum hamesha khush raho, haste raho aur tumhari har wish puri ho. Happy Birthday, Shivani! ❤️",
+  memories: [
+    { icon: "📖", title: "Ek chhoti si baat", text: "bo ye hai ye sab esleye hai ki kyuki me ek memori bnana chata hu fer pta nhi kab mele sayd last birthday ho ." }, 
+  ]
+};
   keypad.appendChild(b);
 });
 
