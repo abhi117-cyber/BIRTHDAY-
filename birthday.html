@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Birthday Surprise 💗</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+:root{
+  --pink:#f47792;
+  --pink2:#ffb5c5;
+  --soft:#fff4f7;
+  --dark:#542b38;
+  --white:#fff;
+  --shadow:0 20px 60px rgba(120,55,75,.15);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+}
+
+body{
+  font-family:"DM Sans",sans-serif;
+  background:#080609;
+  color:var(--dark);
+}
+
+button{
+  font-family:inherit;
+}
+
+.video{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.phone{
+  width:min(100%,430px);
+  min-height:100vh;
+  background:#fff4f7;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 80px rgba(0,0,0,.4);
+}
+
+.screen{
+  display:none;
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.screen.active{
+  display:block;
+}
+
+.center{
+  text-align:center;
+}
+
+.muted{
+  opacity:.7;
+  font-size:12px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn{
+  border:0;
+  background:linear-gradient(
+    135deg,
+    #ff91a9,
+    #e85d7b
+  );
+  color:#fff;
+  padding:14px 24px;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:
+    0 10px 28px rgba(236,95,124,.28);
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 15px 35px rgba(236,95,124,.35);
+}
+
+.btn:active{
+  transform:scale(.96);
+}
+
+/* =========================
+   PASSCODE
+========================= */
+
+#passcode{
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      #fff,
+      #ffe8ef 50%,
+      #ffd5df
+    );
+}
+
+.pass-top{
+  background:#090809;
+  color:#fff;
+  text-align:center;
+  padding:28px 10px;
+  font-size:18px;
+  font-weight:700;
+}
+
+.pass-top small{
+  display:block;
+  font-size:22px;
+  margin-top:7px;
+}
+
+.pass-wrap{
+  padding:75px 25px 30px;
+  text-align:center;
+}
+
+.lock{
+  font-size:48px;
+  margin-bottom:10px;
+  animation:lockFloat 2s infinite ease-in-out;
+}
+
+@keyframes lockFloat{
+  50%{
+    transform:translateY(-8px) rotate(3deg);
+  }
+}
+
+.pass-wrap h3{
+  font-size:21px;
+  margin-bottom:5px;
+}
+
+.pass-input{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:28px 0;
+}
+
+.dot{
+  width:43px;
+  height:48px;
+  border:1px solid #efc7d1;
+  border-radius:13px;
+  background:#fff;
+  text-align:center;
+  font-size:24px;
+  color:#d85e7b;
+  outline:none;
+}
+
+.keypad{
+  max-width:275px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.key{
+  height:50px;
+  border:0;
+  border-radius:50%;
+  background:#fff;
+  color:#74424f;
+  font-weight:700;
+  font-size:15px;
+  box-shadow:0 6px 18px #eacbd3;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.key:hover{
+  transform:scale(1.06);
+}
+
+.hint{
+  margin-top:20px;
+  color:#a36373;
+  font-size:11px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #fff,
+      #fff0f4 45%,
+      #ffdce6
+    );
+  padding:28px 18px;
+  position:relative;
+  overflow:hidden;
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:#ad7180;
+}
+
+.hero-content{
+  text-align:center;
+  padding-top:62px;
+  position:relative;
+  z-index:2;
+}
+
+.gift{
+  width:82px;
+  height:82px;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.75);
+  box-shadow:
+    0 15px 40px rgba(213,88,116,.15);
+  font-size:43px;
+  animation:giftFloat 2.5s infinite ease-in-out;
+}
+
+@keyframes giftFloat{
+  50%{
+    transform:translateY(-10px) rotate(2deg);
+  }
+}
+
+.hero-content > .muted{
+  margin-top:18px;
+}
+
+.hero h1{
+  font-family:"Playfair Display",serif;
+  font-size:40px;
+  line-height:1;
+  color:#d86d86;
+  margin:15px 0 8px;
+}
+
+.hero h1 em{
+  display:block;
+  color:#ed9aaa;
+  font-size:27px;
+  margin-top:10px;
+}
+
+.hero-name-wrap{
+  position:relative;
+  margin:25px auto 32px;
+  padding:18px 10px 20px;
+  max-width:390px;
+}
+
+.hero-name-wrap:before,
+.hero-name-wrap:after{
+  content:"";
+  position:absolute;
+  left:10%;
+  right:10%;
+  height:1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #df8296,
+      transparent
+    );
+}
+
+.hero-name-wrap:before{
+  top:0;
+}
+
+.hero-name-wrap:after{
+  bottom:0;
+}
+
+.name-kicker{
+  font-size:8px;
+  letter-spacing:4px;
+  color:#b66b7c;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.hero-name{
+  font-family:"Playfair Display",serif;
+  font-style:italic;
+  font-size:52px;
+  line-height:1;
+  letter-spacing:-1.5px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #82364e,
+      #ed6686,
+      #9b465f
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  text-shadow:
+    0 10px 30px rgba(180,70,100,.18);
+
+  animation:nameGlow 3s infinite ease-in-out;
+}
+
+.name-heart{
+  display:inline-block;
+  color:#e8738d;
+  font-size:24px;
+  margin:0 6px;
+  vertical-align:middle;
+  animation:heartFloat 2s infinite ease-in-out;
+}
+
+@keyframes nameGlow{
+  50%{
+    transform:scale(1.025);
+    filter:brightness(1.12);
+  }
+}
+
+@keyframes heartFloat{
+  50%{
+    transform:
+      translateY(-5px)
+      rotate(-8deg);
+  }
+}
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.bg-hearts{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.heart{
+  position:absolute;
+  font-size:25px;
+  opacity:.35;
+  animation:
+    heartMove 5s ease-in-out infinite;
+}
+
+@keyframes heartMove{
+  50%{
+    transform:
+      translateY(-25px)
+      rotate(8deg);
+    opacity:.7;
+  }
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.confetti i{
+  position:absolute;
+  width:6px;
+  height:18px;
+  background:#f79aad;
+  opacity:.55;
+  animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+  from{
+    transform:
+      translateY(-50px)
+      rotate(0);
+  }
+
+  to{
+    transform:
+      translateY(110vh)
+      rotate(360deg);
+  }
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+  min-height:100vh;
+  padding:27px 18px 50px;
+  background:
+    linear-gradient(
+      160deg,
+      #fff8fa,
+      #ffeaf0
+    );
+}
+
+.story-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:#b16c7b;
+}
+
+.story-main{
+  margin-top:30px;
+}
+
+.story-main h2{
+  font-family:"Playfair Display",serif;
+  font-size:40px;
+  line-height:1;
+  margin-bottom:22px;
+}
+
+.story-main h2 span{
+  color:#e56d87;
+}
+
+/* =========================
+   MEMORY HERO
+========================= */
+
+.memory-hero{
+  height:230px;
+  border-radius:25px;
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      #fff 0,
+      #ffe3eb 25%,
+      #f5a0b4 65%,
+      #d85d7b 100%
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:
+    0 20px 50px rgba(180,75,105,.22);
+}
+
+.memory-orb{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:white;
+  font-size:58px;
+
+  background:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.7);
+
+  box-shadow:
+    0 0 45px rgba(255,255,255,.75);
+
+  animation:
+    orbPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes orbPulse{
+  50%{
+    transform:scale(1.08);
+    box-shadow:
+      0 0 75px rgba(255,255,255,.95);
+  }
+}
+
+.sparkle{
+  position:absolute;
+  color:#fff;
+  font-size:27px;
+  animation:sparkle 2s infinite ease-in-out;
+}
+
+.s1{
+  top:32px;
+  left:24%;
+}
+
+.s2{
+  right:22%;
+  bottom:42px;
+  animation-delay:.8s;
+}
+
+.s3{
+  left:17%;
+  bottom:45px;
+  animation-delay:1.3s;
+}
+
+.s4{
+  right:15%;
+  top:35px;
+  animation-delay:1.7s;
+}
+
+@keyframes sparkle{
+  50%{
+    opacity:.2;
+    transform:
+      scale(.6)
+      rotate(25deg);
+  }
+}
+
+.memory-lines{
+  position:absolute;
+  inset:0;
+
+  background:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0 22px,
+      rgba(255,255,255,.08) 23px 24px
+    );
+
+  transform:scale(1.4);
+}
+
+.memory-caption{
+  position:absolute;
+  bottom:17px;
+  color:#fff;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+/* =========================
+   MEMORY LETTER
+========================= */
+
+.memory-letter{
+  margin-top:20px;
+  position:relative;
+
+  padding:28px 21px 25px;
+
+  border-radius:23px;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.96),
+      rgba(255,248,250,.98)
+    );
+
+  border:1px solid #f0d3db;
+
+  box-shadow:
+    0 18px 45px rgba(110,50,70,.11);
+
+  overflow:hidden;
+}
+
+.memory-letter:before{
+  content:"“";
+  position:absolute;
+  top:-27px;
+  left:7px;
+
+  font-family:"Playfair Display",serif;
+  font-size:110px;
+
+  color:#f4c4cf;
+  opacity:.5;
+}
+
+.letter-label{
+  position:relative;
+
+  font-size:9px;
+  letter-spacing:3px;
+  color:#c16d80;
+  text-transform:uppercase;
+
+  margin-bottom:16px;
+}
+
+.memory-letter-text{
+  position:relative;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:18px;
+  line-height:1.8;
+
+  color:#633c49;
+  text-align:left;
+}
+
+.memory-sign{
+  margin-top:18px;
+  text-align:right;
+
+  font-family:"Playfair Display",serif;
+  font-style:italic;
+
+  color:#a25c6e;
+  font-size:15px;
+}
+
+/* =========================
+   MEMORY CARDS
+========================= */
+
+.memory-cards{
+  display:grid;
+  gap:13px;
+  margin-top:18px;
+}
+
+.big-memory-card{
+  padding:20px 18px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #fff1f5
+    );
+
+  border:1px solid #f2d5dc;
+
+  box-shadow:
+    0 10px 30px rgba(120,55,75,.08);
+
+  position:relative;
+  overflow:hidden;
+}
+
+.big-memory-card:after{
+  content:"✦";
+
+  position:absolute;
+  right:15px;
+  top:10px;
+
+  color:#e89aac;
+  font-size:21px;
+}
+
+.memory-index{
+  font-size:9px;
+  letter-spacing:2px;
+  color:#d4778e;
+}
+
+.big-memory-card h3{
+  font-family:"Playfair Display",serif;
+  font-size:22px;
+  margin:7px 0 8px;
+  color:#713e4e;
+}
+
+.big-memory-card p{
+  font-size:14px;
+  line-height:1.75;
+  color:#79515d;
+  margin:0;
+}
+
+/* =========================
+   MEMORIES PAGE
+========================= */
+
+.memories{
+  min-height:100vh;
+
+  padding:28px 16px 55px;
+
+  background:
+    linear-gradient(
+      160deg,
+      #fff8fa,
+      #ffeaf0
+    );
+}
+
+.memories h2{
+  text-align:center;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:31px;
+  line-height:1.15;
+
+  margin:12px 0;
+}
+
+.memory-timeline{
+  position:relative;
+  margin:25px 5px 0;
+}
+
+.memory-timeline:before{
+  content:"";
+
+  position:absolute;
+
+  left:20px;
+  top:10px;
+  bottom:10px;
+
+  width:2px;
+
+  background:#f1b8c5;
+}
+
+.timeline-item{
+  display:flex;
+  gap:13px;
+
+  position:relative;
+
+  margin-bottom:18px;
+}
+
+.timeline-dot{
+  flex:0 0 42px;
+  height:42px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  border:2px solid #f0a9b9;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:1;
+
+  box-shadow:
+    0 4px 12px rgba(180,75,105,.12);
+}
+
+.timeline-content{
+  flex:1;
+
+  background:#fff;
+
+  border-radius:17px;
+
+  padding:15px;
+
+  border:1px solid #f5d9df;
+
+  box-shadow:
+    0 7px 20px rgba(120,55,75,.07);
+}
+
+.timeline-content span{
+  font-size:8px;
+  letter-spacing:2px;
+  color:#d4778e;
+}
+
+.timeline-content h3{
+  font-family:"Playfair Display",serif;
+
+  margin:5px 0;
+
+  font-size:20px;
+}
+
+.timeline-content p{
+  font-size:12px;
+  line-height:1.7;
+  color:#805866;
+  margin:0;
+}
+
+.quote{
+  text-align:center;
+
+  margin:27px 0;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:18px;
+  font-style:italic;
+
+  color:#a45e70;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-bg{
+  position:absolute;
+  inset:0;
+
+  background:
+    rgba(44,18,25,.62);
+
+  backdrop-filter:blur(6px);
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:25px;
+
+  z-index:20;
+}
+
+.modal-bg.show{
+  display:flex;
+}
+
+.modal{
+  width:100%;
+
+  background:#fff9fa;
+
+  border-radius:25px;
+
+  padding:30px 22px;
+
+  text-align:center;
+
+  box-shadow:
+    0 30px 90px #301620;
+
+  animation:modalIn .35s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:scale(.85) translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+.modal .cake{
+  font-size:58px;
+}
+
+.modal h2{
+  font-family:"Playfair Display",serif;
+  font-size:30px;
+}
+
+.modal p{
+  font-size:15px;
+  line-height:1.8;
+  color:#78505b;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+  min-height:100vh;
+
+  padding:35px 18px;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      #fff,
+      #ffe9ef 50%,
+      #ffd8e2
+    );
+
+  text-align:center;
+}
+
+.final .big-heart{
+  font-size:70px;
+
+  animation:
+    pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.12);
+  }
+}
+
+.final h2{
+  font-family:"Playfair Display",serif;
+
+  font-size:38px;
+
+  color:#d65d78;
+
+  line-height:1.1;
+}
+
+.final-box{
+  margin-top:30px;
+
+  padding:28px 22px;
+
+  border-radius:24px;
+
+  background:#fff;
+
+  box-shadow:var(--shadow);
+}
+
+.final-box p{
+  font-size:15px;
+  line-height:1.8;
+  color:#78505b;
+}
+
+.footer-note{
+  text-align:center;
+
+  color:#9e6976;
+
+  font-size:10px;
+
+  margin-top:28px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:360px){
+
+  .hero-name{
+    font-size:44px;
+  }
+
+  .hero h1{
+    font-size:35px;
+  }
+
+  .memory-letter-text{
+    font-size:16px;
+  }
+
+  .story-main h2{
+    font-size:34px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="video">
+
+<main class="phone">
+
+<!-- =====================================================
+     ✏️ EDIT ONLY THIS SECTION
+====================================================== -->
+
+<script>
+
+const CONFIG = {
+
+  /* Birthday person's name */
+  name: "SHIVANI",
+
+  /* Your name */
+  sender: "YOUR CLASSMET",
+
+  /* 4 digit passcode */
+  passcode: "1234",
+
+  /* Main birthday heading */
+  birthdayText: "Happy wala Birthday",
+
+  /* Small line below birthday */
+  subtitle: "Beautiful girl and Speed se bate karne wali ladki",
+
+  /* Story heading */
+  storyTitle: "Forever & Always",
+
+  /* Main memory */
+  storyText:
+    "Tumhe shayad ye sab yaad nahi hoga, par mujhe yaad hai. Jab main is school me aaya tha to mera work complete nahi tha, isliye Parmjit Sir ne tumhari notebook mujhe kaam complete karne ke liye di thi. Uss time tumne mujhe copy de di, par jaise hi sir gaye tumne copy aise maangi mujhse jaise ab main copy kabhi wapas hi nahi dunga. Tab mujhe tumpe sabse zyada gussa aaya tha. Sorry... ❤️",
+
+  /* Final personal message */
+  secretMessage:
+    "Shayad tumhe ye sab chhoti-chhoti baatein yaad na ho, lekin Main ye sab bas ek memori bnanane ke leye . Tum hamesha khush raho, haste raho aur tumhari har wish puri ho. Happy Birthday, Shivani! ❤️",
+
+  /* Memory cards */
+  memories: [
+
+    {
+      icon: "📖",
+      title: "Woh pehli yaad",
+      text:
+        "Kabhi-kabhi ek bahut chhota sa moment bhi itna special ban jata hai ki saalon baad bhi yaad rehta hai."
+    },
+
+    {
+      icon: "❤️",
+      title: "Ek special memory",
+      text:
+        "Ye website kisi photo album ke liye nahi hai. Bas un chhoti-chhoti yaadon ko ek jagah rakhne ke liye hai."
+    }
+
+  ]
+
+};
+
+</script>
+
+<!-- =====================================================
+     PASSCODE
+====================================================== -->
+
+<section id="passcode" class="screen active">
+
+  <div class="pass-top">
+    POV: It's Her Birthday
+    <small>💗 ✨ 💗</small>
+  </div>
+
+  <div class="pass-wrap">
+
+    <div class="lock">
+      🔐
+    </div>
+
+    <h3>
+      Enter Passcode
+    </h3>
+
+    <p class="muted">
+      A little surprise is waiting for you...
+    </p>
+
+    <div class="pass-input">
+
+      <input class="dot" id="p1" maxlength="1" readonly>
+      <input class="dot" id="p2" maxlength="1" readonly>
+      <input class="dot" id="p3" maxlength="1" readonly>
+      <input class="dot" id="p4" maxlength="1" readonly>
+
+    </div>
+
+    <div class="keypad" id="keypad"></div>
+
+    <div class="hint">
+      Hint: your special date 💗
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     WELCOME
+====================================================== -->
+
+<section id="welcome" class="screen">
+
+  <div class="bg-hearts" id="hearts"></div>
+
+  <div class="hero">
+
+    <div class="nav">
+      <span>✦ A SPECIAL SURPRISE</span>
+      <span>FOR YOU ♡</span>
+    </div>
+
+    <div class="hero-content">
+
+      <div class="gift">
+        🎁
+      </div>
+
+      <p class="muted">
+        A little gift made with shivani
+      </p>
+
+      <h1>
+
+        <span id="heroTitle">
+          Happy Birthday
+        </span>
+
+        <em id="heroSub">
+           Beautiful girl and speed se bate karne bale ladki ...
+        </em>
+
+      </h1>
+
+
+      <!-- SPECIAL NAME -->
+
+      <div class="hero-name-wrap">
+
+        <div class="name-kicker">
+          THIS LITTLE SURPRISE IS FOR
+        </div>
+
+        <div class="hero-name">
+
+          <span class="name-heart">
+            ♡
+          </span>
+
+          <span id="heroName">
+            SHIVANI
+          </span>
+
+          <span class="name-heart">
+            ♡
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn"
+        onclick="show('story')">
+
+        OPEN YOUR SURPRISE →
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     STORY
+====================================================== -->
+
+<section id="story" class="screen">
+
+  <div class="story">
+
+    <div class="story-head">
+
+      <span>
+        ♥ MADE WITH you
+      </span>
+
+      <span>
+        CHAPTER 01
+      </span>
+
+    </div>
+
+
+    <div class="story-main">
+
+      <h2 id="storyHeading">
+        Forever &
+        <br>
+        <span>Always</span>
+      </h2>
+
+
+      <!-- PHOTO KI JAGAH ANIMATED MEMORY -->
+
+      <div class="memory-hero">
+
+        <div class="sparkle s1">
+          ✦
+        </div>
+
+        <div class="sparkle s2">
+          ✧
+        </div>
+
+        <div class="sparkle s3">
+          ✦
+        </div>
+
+        <div class="sparkle s4">
+          ✧
+        </div>
+
+        <div class="memory-orb">
+          ♡
+        </div>
+
+        <div class="memory-lines"></div>
+
+        <div class="memory-caption">
+          A MEMORY WORTH KEEPING
+        </div>
+
+      </div>
+
+
+      <!-- BIG MEMORY LETTER -->
+
+      <div class="memory-letter">
+
+        <div class="letter-label">
+          A MEMORY I STILL REMEMBER
+        </div>
+
+        <div
+          class="memory-letter-text"
+          id="storyText">
+
+        </div>
+
+        <div class="memory-sign">
+
+          —
+          <span id="storySign">
+            ABHISHEK
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- MEMORY CARDS -->
+
+      <div
+        class="memory-cards"
+        id="memoryCards">
+
+      </div>
+
+
+      <div class="center">
+
+        <button
+          class="btn"
+          onclick="openMessage()">
+
+          READ  →
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEMORIES
+====================================================== -->
+
+<section id="memories" class="screen">
+
+  <div class="memories">
+
+    <p class="center muted">
+      ✦ CHAPTER 02 ✦
+    </p>
+
+    <h2>
+      Every Moment,
+      Every Smile,
+      Every Chapter
+    </h2>
+
+    <p class="center muted">
+      Some memories don't need pictures.
+      They only need to be remembered.
+    </p>
+
+
+    <div
+      class="memory-timeline"
+      id="memoryTimeline">
+
+    </div>
+
+
+    <div class="quote">
+
+      “Some memories become home.”
+
+    </div>
+
+
+    <div class="center">
+
+      <button
+        class="btn"
+        onclick="openMessage()">
+
+        ONE LAST SURPRISE 💗
+
+      </button>
+
+    </div>
+
+
+    <div class="footer-note">
+
+      Made specially for
+      <span id="footerName"></span>
+
+      ·
+
+      by
+      <span id="footerSender"></span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+====================================================== -->
+
+<section id="final" class="screen">
+
+  <div class="final">
+
+    <div class="big-heart">
+      🎂
+    </div>
+
+    <h2>
+
+      Close Your Eyes
+      <br>
+      &
+      <br>
+      Make a Wish ✨
+
+    </h2>
+
+    <p class="muted">
+      One last little message for you...
+    </p>
+
+
+    <div class="final-box">
+
+      <p id="finalText">
+      </p>
+
+      <button
+        class="btn"
+        onclick="restart()">
+
+        ↻ WATCH AGAIN
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     POPUP MESSAGE
+====================================================== -->
+
+<div
+  class="modal-bg"
+  id="modal">
+
+  <div class="modal">
+
+    <div class="cake">
+      🎂💗
+    </div>
+
+    <h2>
+
+      Dear
+      <span id="modalName">
+      </span>
+      ...
+
+    </h2>
+
+    <p id="secret">
+    </p>
+
+    <button
+      class="btn"
+      onclick="closeMessage()">
+
+      Continue →
+
+    </button>
+
+  </div>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   BASIC NAVIGATION
+====================================================== */
+
+const $ = selector =>
+  document.querySelector(selector);
+
+
+const screens = [
+  "passcode",
+  "welcome",
+  "story",
+  "memories",
+  "final"
+];
+
+
+function show(id){
+
+  screens.forEach(screen => {
+
+    const element =
+      document.getElementById(screen);
+
+    if(element){
+      element.classList.remove("active");
+    }
+
+  });
+
+
+  const target =
+    document.getElementById(id);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   LOAD CONFIG
+====================================================== */
+
+function fillData(){
+
+  $("#heroTitle").textContent =
+    CONFIG.birthdayText;
+
+  $("#heroSub").textContent =
+    CONFIG.subtitle;
+
+  $("#heroName").textContent =
+    CONFIG.name;
+
+  $("#storyHeading").innerHTML =
+    CONFIG.storyTitle.replace(
+      "&",
+      "&<br><span>"
+    );
+
+  $("#storyText").textContent =
+    CONFIG.storyText;
+
+  $("#storySign").textContent =
+    CONFIG.sender;
+
+  $("#modalName").textContent =
+    CONFIG.name;
+
+  $("#secret").textContent =
+    CONFIG.secretMessage;
+
+  $("#finalText").textContent =
+    CONFIG.secretMessage;
+
+  $("#footerName").textContent =
+    CONFIG.name;
+
+  $("#footerSender").textContent =
+    CONFIG.sender;
+
+
+  const cards =
+    $("#memoryCards");
+
+  const timeline =
+    $("#memoryTimeline");
+
+
+  CONFIG.memories.forEach(
+    (item,index) => {
+
+
+      /* MEMORY CARD */
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "big-memory-card";
+
+
+      card.innerHTML = `
+
+        <div class="memory-index">
+
+          MEMORY
+          ${String(index+1).padStart(2,"0")}
+          ${item.icon}
+
+        </div>
+
+        <h3>
+          ${item.title}
+        </h3>
+
+        <p>
+          ${item.text}
+        </p>
+
+      `;
+
+
+      cards.appendChild(card);
+
+
+      /* TIMELINE */
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "timeline-item";
+
+
+      row.innerHTML = `
+
+        <div class="timeline-dot">
+
+          ${item.icon}
+
+        </div>
+
+        <div class="timeline-content">
+
+          <span>
+            MEMORY
+            ${String(index+1).padStart(2,"0")}
+          </span>
+
+          <h3>
+            ${item.title}
+          </h3>
+
+          <p>
+            ${item.text}
+          </p>
+
+        </div>
+
+      `;
+
+
+      timeline.appendChild(row);
+
+    }
+  );
+
+}
+
+fillData();
+
+
+/* =====================================================
+   PASSCODE
+====================================================== */
+
+let code = "";
+
+const inputs = [
+
+  $("#p1"),
+  $("#p2"),
+  $("#p3"),
+  $("#p4")
+
+];
+
+
+function resetCode(){
+
+  code = "";
+
+  inputs.forEach(input => {
+
+    input.value = "";
+
+    input.style.borderColor =
+      "#efc7d1";
+
+  });
+
+}
+
+
+function press(number){
+
+  if(code.length >= 4){
+    return;
+  }
+
+
+  code += number;
+
+
+  inputs[
+    code.length - 1
+  ].value = "•";
+
+
+  if(code.length === 4){
+
+    setTimeout(() => {
+
+      if(code === CONFIG.passcode){
+
+        show("welcome");
+
+        resetCode();
+
+      }
+
+      else{
+
+        inputs.forEach(
+          input => {
+
+            input.style.borderColor =
+              "#ef6d88";
+
+          }
+        );
+
+
+        setTimeout(
+          resetCode,
+          500
+        );
+
+      }
+
+    },250);
+
+  }
+
+}
+
+
+/* =====================================================
+   KEYPAD
+====================================================== */
+
+const keypad =
+  $("#keypad");
+
+
+[
+  1,2,3,
+  4,5,6,
+  7,8,9,
+  "⌫",0,"↵"
+
+].forEach(number => {
+
+
+  const button =
+    document.createElement("button");
+
+
+  button.className =
+    "key";
+
+
+  button.textContent =
+    number;
+
+
+  button.onclick = () => {
+
+
+    if(number === "⌫"){
+
+      code =
+        code.slice(0,-1);
+
+
+      inputs.forEach(
+        (input,index) => {
+
+          input.value =
+            index < code.length
+              ? "•"
+              : "";
+
+        }
+      );
+
+    }
+
+
+    else if(number !== "↵"){
+
+      press(number);
+
+    }
+
+  };
+
+
+  keypad.appendChild(button);
+
+});
+
+
+/* =====================================================
+   POPUP
+====================================================== */
+
+function openMessage(){
+
+  $("#modal")
+    .classList
+    .add("show");
+
+}
+
+
+function closeMessage(){
+
+  $("#modal")
+    .classList
+    .remove("show");
+
+  show("final");
+
+}
+
+
+function restart(){
+
+  resetCode();
+
+  show("passcode");
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+====================================================== */
+
+for(let i=0;i<18;i++){
+
+  const heart =
+    document.createElement("span");
+
+
+  heart.className =
+    "heart";
+
+
+  heart.textContent =
+    [
+      "♡",
+      "♥",
+      "✦",
+      "✨"
+    ][i%4];
+
+
+  heart.style.left =
+    Math.random()*95 + "%";
+
+
+  heart.style.top =
+    Math.random()*95 + "%";
+
+
+  heart.style.animationDelay =
+    Math.random()*3 + "s";
+
+
+  $("#hearts")
+    .appendChild(heart);
+
+}
+
+
+/* =====================================================
+   CONFETTI
+====================================================== */
+
+for(let i=0;i<30;i++){
+
+  const piece =
+    document.createElement("i");
+
+
+  piece.style.left =
+    Math.random()*100 + "%";
+
+
+  piece.style.top =
+    -Math.random()*100 + "px";
+
+
+  piece.style.animationDelay =
+    Math.random()*4 + "s";
+
+
+  piece.style.transform =
+    "rotate(" +
+    Math.random()*180 +
+    "deg)";
+
+
+  $(".hero")
+    .appendChild(piece);
+
+}
+
+
+/* =====================================================
+   KEYBOARD SUPPORT
+====================================================== */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key >= "0" &&
+      event.key <= "9"
+    ){
+
+      press(event.key);
+
+    }
+
+
+    if(event.key === "Backspace"){
+
+      code =
+        code.slice(0,-1);
+
+
+      inputs.forEach(
+        (input,index) => {
+
+          input.value =
+            index < code.length
+              ? "•"
+              : "";
+
+        }
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
